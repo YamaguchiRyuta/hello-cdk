@@ -1,4 +1,4 @@
-import { Stack, StackProps } from 'aws-cdk-lib';
+import { Stack, StackProps, RemovalPolicy } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 import { aws_s3 as s3 } from 'aws-cdk-lib';
@@ -15,7 +15,9 @@ export class HelloCdkStack extends Stack {
     // });
 
     new s3.Bucket(this, 'MyFirstBucket', {
-      versioned: true
+      versioned: true,
+      removalPolicy: RemovalPolicy.DESTROY,
+      autoDeleteObjects: true
     });
   }
 }
